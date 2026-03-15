@@ -9,6 +9,33 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
+    <style>
+        /* Estilos específicos para o Slider de Volume */
+        .volume-control {
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 200px;
+        }
+
+        .volume-control label {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        #volume-slider {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #ff4757; /* Combinando com badge-red */
+            height: 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -43,7 +70,7 @@
                 <div id="matchmaking-status">
                     <button id="btn-search" onclick="startMatchmaking()">Buscar Oponente</button>
                     <button id="btn-private" class="btn-private" onclick="createPrivateFlow()">Sala Privada</button>
-                    <button id="btn-local" onclick="startLocalFlow()" class="btn-local">
+                    <button id="btn-local" onclick="startLocalGame()" class="btn-local">
                         Modo Local (Offline)
                         <span class="badge badge-green">P1 vs P2</span>
                     </button>
@@ -60,7 +87,8 @@
                     </div>
                 </div>
                 <p class="waiting-msg" id="waiting-msg-text">Buscando oponente...</p>
-                <div class="loader"></div> <button class="btn-back" onclick="goBack()">Cancelar</button>
+                <div class="loader"></div> 
+                <button class="btn-back" onclick="goBack()">Cancelar</button>
             </div>
         </div>
 
@@ -83,6 +111,10 @@
             <button class="btn-exit" onclick="leaveGame()">Sair do Jogo</button>
         </div>
     </div>
+    <div class="volume-control">
+        <label for="volume-slider">Vol.</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.2">
+    </div>
     <footer class="social-footer">
         <hr>
         <p>Desenvolvido por <strong>Murilo D.</strong></p>
@@ -94,6 +126,7 @@
     </footer>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/sound.js"></script>
     <script src="/js/ws.js"></script>
     <script src="/js/local.js"></script>
 </body>

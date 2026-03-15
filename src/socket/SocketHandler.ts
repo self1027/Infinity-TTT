@@ -58,8 +58,6 @@ export const initSocketHandlers = (io: Server) => {
             // o set já existe na classe
             room.rematchRequests.add(socket.id);
 
-            console.log(`Pedido de revanche na sala ${roomId}. Total: ${room.rematchRequests.size}`);
-
             if (room.rematchRequests.size === 2) { // os 2 aceitaram
                 room.resetGame();
                 startGame(io, room);
