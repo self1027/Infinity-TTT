@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "uber": "npm run dev -- --uber",
-    "log": "npm run dev -- --log"
+    "log": "npm run dev -- --log",
+    "build": "rimraf dist && tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
