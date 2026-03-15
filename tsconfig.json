@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Linguagem e Ambiente */
+    "target": "es2020",                                  /* Versão moderna para suportar as libs atuais */
+    
+    /* Módulos */
+    "module": "commonjs",                                /* Gera código compatível com Node.js padrão */
+    "rootDir": "./src",                                  /* Onde está seu código TypeScript */
+    "moduleResolution": "node",                          /* Como o TS busca as libs nas node_modules */
+    "resolveJsonModule": true,                           /* Permite importar arquivos .json se precisar */
+
+    /* Emitir (Saída) */
+    "outDir": "./dist",                                  /* Para onde o código compilado vai */
+    "sourceMap": true,                                   /* Ajuda a debugar o código original no erro */
+    "removeComments": true,                              /* Deixa o arquivo final mais leve */
+
+    /* Restrições de Interoperabilidade */
+    "esModuleInterop": true,                             /* RESOLVE O ERRO DO UUID: permite importar módulos ESM */
+    "forceConsistentCasingInFileNames": true,            /* Evita erros de digitação em nomes de arquivos */
+
+    /* Checagem de Tipos */
+    "strict": true,                                      /* Mantém o código seguro e bem tipado */
+    "skipLibCheck": true                                 /* Ignora erros de tipos dentro das bibliotecas */
+  },
+  "include": ["src/**/*"],                               /* Compila tudo dentro de src */
+  "exclude": ["node_modules", "public"]                  /* Ignora o que não é código do servidor */
+}

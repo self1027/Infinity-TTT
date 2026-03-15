@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+</head>
+<body>
+    <div id="app">
+        <div id="game-overlay" class="hidden">
+            <div class="overlay-content">
+                <h3 id="overlay-msg">Oponente saiu!</h3>
+                <p>A partida foi encerrada.</p>
+                <button class="btn-exit" onclick="leaveGame()">Sair para o Menu</button>
+            </div>
+        </div>
+
+        <div id="lobby">
+            <h1>Infinity Tic-Tac-Toe</h1>
+            <input type="text" id="username" placeholder="Seu nome..." maxlength="15">
+
+            <div id="step-1">
+                <h3>Selecione o Modo:</h3>
+                <div class="modes-container">
+                    <button onclick="selectMode('classic')">
+                        Clássico 
+                        <span id="count-classic" class="badge badge-red">0</span>
+                    </button>
+                    <button onclick="selectMode('infinity')">
+                        Infinito 
+                        <span id="count-infinity" class="badge badge-red">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-2" class="hidden">
+                <h3 id="mode-selected-text">Modo: ...</h3>
+                <div id="matchmaking-status">
+                    <button id="btn-search" onclick="startMatchmaking()">Buscar Oponente</button>
+                    <button id="btn-private" class="btn-private" onclick="createPrivateFlow()">Sala Privada</button>
+                    <button id="btn-local" onclick="startLocalFlow()" class="btn-local">
+                        Modo Local (Offline)
+                        <span class="badge badge-green">P1 vs P2</span>
+                    </button>
+                </div>
+                <button id="btn-back-main" class="btn-back" onclick="goBack()">← Voltar</button>
+            </div>
+
+            <div id="invite-area" class="hidden">
+                <div id="private-only" class="hidden">
+                    <p>Envie o link para um amigo:</p>
+                    <div class="copy-box">
+                        <input type="text" id="share-link" readonly>
+                        <button onclick="copyLink()">Copiar</button>
+                    </div>
+                </div>
+                <p class="waiting-msg" id="waiting-msg-text">Buscando oponente...</p>
+                <div class="loader"></div> <button class="btn-back" onclick="goBack()">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="game-container" class="hidden">
+            <div class="match-info">
+                <span id="player-label" class="player-tag">Você (-)</span> 
+                <span class="vs">vs</span> 
+                <span id="opponent-label" class="player-tag">Oponente (-)</span>
+            </div>
+            
+            <h2 id="status">Sua vez</h2>
+            
+            <div id="board" class="board">
+                </div>
+
+            <div id="rematch-area" class="hidden">
+                <button id="rematch-btn" class="btn-rematch" onclick="requestRematch()">Jogar Novamente</button>
+            </div>
+            
+            <button class="btn-exit" onclick="leaveGame()">Sair do Jogo</button>
+        </div>
+    </div>
+    <footer class="social-footer">
+        <hr>
+        <p>Desenvolvido por <strong>Murilo D.</strong></p>
+        <div class="social-links">
+            <a href="https://murilod.dev/" target="_blank" class="link-button-footer">Portfólio</a>
+            <a href="https://www.linkedin.com/in/murilo-dias-dev/" target="_blank" class="link-button-footer">LinkedIn</a>
+            <a href="https://github.com/self1027" target="_blank" class="link-button-footer">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/ws.js"></script>
+    <script src="/js/local.js"></script>
+</body>
+</html>
