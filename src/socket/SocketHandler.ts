@@ -29,7 +29,7 @@ export const initSocketHandlers = (io: Server) => {
 
                 if (room) {
                     socket.join(room.id);
-                    if (room.isFull()) startGame(io, room);
+                    if (room.isFull()) return startGame(io, room);
                 }
             } catch (error: any) {
                 socket.emit('error_msg', error.message);

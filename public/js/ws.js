@@ -216,20 +216,36 @@ socket.on('opponent_left', () => {
 socket.on('error_msg', (msg) => showOverlay(msg));
 
 function showOverlay(msg) {
-	if (!document.getElementById('game-container').classList.contains('hidden')) {
-		document.getElementById('overlay-msg').innerText = msg;
-		document.getElementById('game-overlay').classList.remove('hidden');
-	}
+	document.getElementById('overlay-msg').innerText = msg;
+	document.getElementById('game-overlay').classList.remove('hidden');
 }
 
 function copyLink() {
 	const input = document.getElementById('share-link');
-	input.select();
+	const button = document.querySelector('.copy-box button');
+
 	navigator.clipboard.writeText(input.value);
-	alert("Copiado!");
+
+	const originalText = button.innerText;
+
+	button.innerText = "✓ Copiado!";
+	button.classList.add('copy-success', 'copy-pressed');
+
+	setTimeout(() => {
+		button.innerText = originalText;
+		button.classList.remove('copy-success', 'copy-pressed');
+	}, 1000);
 }
 
 function leaveGame() {
-	if (!currentRoomId) location.reload();
-	else window.location.href = '/';
+	if (currentRoomId) {
+		socket.emit('leave_room', { roomId: currentRoomId });
+		currentRoomId = null;
+	}
+
+	mySymbol = null;
+	currentGameMode = null;
+	lastBoardState = null;
+
+	window.location.href = '/';
 }
