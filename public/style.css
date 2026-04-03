@@ -57,14 +57,48 @@ button:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #1a1a1a;
 .badge-red { background: #ff5f5f; color: #fff; }
 .badge-green { background: #00e676; color: #1a1a1a; }
 
+#matchmaking-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#btn-search, .btn-private, .btn-local {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btn-private { background: #1a1a1a; color: white; border: 2px solid #1a1a1a; }
 .btn-private:hover { background: #333; color: #fff; }
 
 .btn-back { margin-top: 15px; background: none; border: none; color: #4f4f4f; text-decoration: underline; font-size: 0.85rem; box-shadow: none; }
 .btn-back:hover { transform: none; box-shadow: none; background: none; color: #000; }
 
-.btn-exit { margin-top: 20px; background: #fff; color: #ff5f5f; border-color: #ff5f5f; width: 85%; box-shadow: 4px 4px 0px #ff5f5f; }
+.btn-exit { margin-top: 20px; background: #fff; color: #ff5f5f; border-color: #ff5f5f; width: 85%; box-shadow: 4px 4px 0px #ff5f5f; margin-left: auto; margin-right: auto; display: block; }
 .btn-exit:hover { background: #ff5f5f; color: #fff; box-shadow: 6px 6px 0px #1a1a1a; }
+
+.btn-local {
+    flex-direction: column; 
+    gap: 8px;
+    padding: 15px !important;
+}
+
+.btn-local .badge {
+    margin-top: 0; 
+    display: inline-block;
+    width: fit-content;
+}
+
+@media (max-width: 401px) {
+    .btn-local {
+        max-width: 100%;
+        padding: 12px !important;
+    }
+}
 
 .copy-box { display: flex; gap: 0; border: 2px solid #1a1a1a; border-radius: 4px; overflow: hidden; margin-top: 10px; }
 .copy-box input { margin-bottom: 0; border: none; border-radius: 0; background: #fff; font-size: 0.75rem; padding: 10px; flex: 1; }
@@ -135,19 +169,80 @@ button:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #1a1a1a;
 
 hr { margin: 20px 0 10px 0; border: none; border-top: 2px dotted #e0e0e0; width: 100%; max-width: 800px; }
 
+.volume-control {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 200px;
+}
+
+.volume-control label {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: bold;
+}
+
+#volume-slider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #ff4757;
+    height: 5px;
+}
+
 .social-footer { text-align: center; padding: 20px; width: 100%; max-width: 800px; flex-shrink: 0; }
 .social-footer p { font-size: 0.9rem; color: #444; margin-bottom: 20px; }
-.social-footer .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+.social-footer .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; align-items: stretch; }
 
 .link-button-footer {
     cursor: pointer; text-decoration: none; font-size: 0.85rem; padding: 8px 16px;
     background: #fff; color: #222; border: 2px solid #222; font-weight: 700;
     transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
 }
 
 .link-button-footer:hover { background: #222; color: #fff; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 
 @media (max-width: 600px) {
-    .social-footer .social-links { flex-direction: column; align-items: center; }
-    .link-button-footer { width: 100%; max-width: 200px; }
+    #app {
+        padding: 1.5rem 1rem;
+        max-width: 95%;
+    }
+
+    .social-footer .social-links {
+        flex-direction: column;
+    }
+
+    .link-button-footer {
+        width: 100%;
+        margin: 4px 0;
+    }
+
+    @media (max-width: 401px) {
+        .modes-container {
+            flex-direction: column;
+        }
+        #step-1 button {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+        .badge {
+            margin-top: 0;
+        }
+    }
+
+    .match-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .vs {
+        display: none;
+    }
 }
