@@ -1,0 +1,4 @@
+public/**/* linguist-vendored
+public/**/* linguist-generated
+
+src/**/*.ts linguist-language=TypeScript
